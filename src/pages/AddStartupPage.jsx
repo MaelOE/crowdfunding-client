@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+const API = import.meta.env.VITE_SERVER_URL;
+
 function AddStartupPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -11,7 +13,6 @@ function AddStartupPage() {
   const [contact, setContact] = useState("");
 
   const navigate = useNavigate();
-  const API = "http://localhost:5005";
 
   useEffect(() => {
     axios
@@ -32,7 +33,7 @@ function AddStartupPage() {
     };
 
     axios
-      .post("http://localhost:5005/startups", newProject)
+      .post(`${API}/startups`, newProject)
       .then(() => {
         console.log("all good, the startup was added");
         navigate("/");

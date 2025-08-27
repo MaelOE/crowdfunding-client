@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const API = import.meta.env.VITE_SERVER_URL;
+
 function StartupDetailsPage() {
   const [startup, setStartup] = useState(null);
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ function StartupDetailsPage() {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5005/startups/${startupId}?_expand=sector`
+        `${API}/startups/${startupId}?_expand=sector`
       );
       console.log(response.data);
       setStartup(response.data);

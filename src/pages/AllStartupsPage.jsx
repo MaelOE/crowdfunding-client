@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const API = import.meta.env.VITE_SERVER_URL;
+
 function AllStartupsPage() {
   const [startups, setStartups] = useState(null);
 
@@ -10,9 +12,7 @@ function AllStartupsPage() {
   }, []);
   const getData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5005/startups?_expand=sector"
-      );
+      const response = await axios.get(`${API}/startups?_expand=sector`);
       console.log(response.data);
       setStartups(response.data);
     } catch (error) {

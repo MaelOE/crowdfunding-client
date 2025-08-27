@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
+const API = import.meta.env.VITE_SERVER_URL;
+
 function EditProjectPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -16,8 +18,6 @@ function EditProjectPage() {
   const { startupId } = useParams();
 
   const navigate = useNavigate();
-  const API = "http://localhost:5005";
-
   useEffect(() => {
     axios
       .get(`${API}/sectors`)
@@ -27,7 +27,7 @@ function EditProjectPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/startups/${startupId}?_expand=sector`)
+      .get(`${API}/startups/${startupId}?_expand=sector`)
       .then((response) => {
         console.log(response);
         setName(response.data.name);
@@ -56,7 +56,7 @@ function EditProjectPage() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5005/startups/${startupId}`,
+        `${API}/startups/${startupId}`,
         updatedProject
       );
       navigate(`/startups/${startupId}`);
@@ -67,7 +67,7 @@ function EditProjectPage() {
 
   const deleteProject = () => {
     axios
-      .delete(`http://localhost:5005/startups/${startupId}`)
+      .delete(`${API}/startups/${startupId}`)
       .then(() => {
         navigate("/");
       })
