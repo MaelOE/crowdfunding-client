@@ -6,6 +6,7 @@ const API = import.meta.env.VITE_SERVER_URL;
 
 function AllStartupsPage() {
   const [startups, setStartups] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getData();
@@ -24,6 +25,15 @@ function AllStartupsPage() {
     return <h3>Loading...</h3>;
   }
 
+  const filteredStartups = startups.filter((s) => {
+    const q = searchTerm.toLowerCase();
+    return (
+      s.name.toLowerCase().includes(q) ||
+      s.description.toLowerCase().includes(q) ||
+      s.sector?.name.toLowerCase().includes(q)
+    );
+  });
+
   return (
     <>
       <div>
@@ -31,27 +41,38 @@ function AllStartupsPage() {
           <button> Add a startup </button>
         </Link>
 
-        {startups &&
-          startups.map((startup, i) => {
-            return (
-              <div key={startup.id}>
-                <Link to={`/startups/${startup.id}`}>
-                  <div>
-                    <div>
-                      <img
-                        src={startup.image_url}
-                        alt={"image of " + startup.name}
-                      />
-                      <h5>{startup.name}</h5>
-                      <h6>
-                        <em>{startup.sector?.name}</em>
-                      </h6>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+        <div style={{ margin: "12px 0" }}>
+          <input
+            type="text"
+            placeholder="Search by name, sector or keyword"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              width: "600px",
+              padding: "8px 12px",
+              fontSize: "16px",
+            }}
+          />
+        </div>
+
+        {filteredStartups.map((startup) => {
+          return (
+            <div key={startup.id}>
+              <Link to={`/startups/${startup.id}`}>
+                <div>
+                  <img
+                    src={startup.image_url}
+                    alt={"image of " + startup.name}
+                  />
+                  <h5>{startup.name}</h5>
+                  <h6>
+                    <em>{startup.sector?.name}</em>
+                  </h6>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </>
   );
