@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -11,6 +11,9 @@ function AddStartupPage() {
   const [sectors, setSectors] = useState([]);
   const [sectorId, setSectorId] = useState("");
   const [contact, setContact] = useState("");
+  const [firstImageUrl, setFirstImageUrl] = useState("");
+  const [secondImageUrl, setSecondImageUrl] = useState("");
+  const [thirdImageUrl, setThirdImageUrl] = useState("");
 
   const navigate = useNavigate();
 
@@ -30,6 +33,9 @@ function AddStartupPage() {
       amountRaised,
       sectorId,
       contact,
+      firstImageUrl,
+      secondImageUrl,
+      thirdImageUrl,
     };
 
     axios
@@ -87,6 +93,33 @@ function AddStartupPage() {
             ))}
           </select>
 
+          <label> First Image </label>
+          <input
+            type="text"
+            name="firstImageUrl"
+            placeholder="First Image URL"
+            value={firstImageUrl}
+            onChange={(e) => setFirstImageUrl(e.target.value)}
+          />
+
+          <label> Second Image </label>
+          <input
+            type="text"
+            name="secondImageUrl"
+            placeholder="Second Image URL"
+            value={secondImageUrl}
+            onChange={(e) => setSecondImageUrl(e.target.value)}
+          />
+
+          <label> Third Image </label>
+          <input
+            type="text"
+            name="thirdImageUrl"
+            placeholder="Third Image URL"
+            value={thirdImageUrl}
+            onChange={(e) => setThirdImageUrl(e.target.value)}
+          />
+
           <label> Contact Information</label>
           <input
             type="text"
@@ -103,30 +136,3 @@ function AddStartupPage() {
   );
 }
 export default AddStartupPage;
-
-/*  <label> Images</label>
-          <input
-            type="text"
-            name="firstImageUrl"
-            placeholder="First Image URL"
-            value={firstImageUrl}
-            onChange={(e) => setFirstImageUrl(e.target.value)}
-          />
-
-          <label> Images</label>
-          <input
-            type="text"
-            name="secondImageUrl"
-            placeholder="Second Image URL"
-            value={secondImageUrl}
-            onChange={(e) => setSecondImageUrl(e.target.value)}
-          />
-
-           <label> Images</label>
-          <input
-            type="text"
-            name="thirdImageUrl"
-            placeholder="Third Image URL"
-            value={thirdImageUrl}
-            onChange={(e) => setThirdImageUrl(e.target.value)}
-          /> */

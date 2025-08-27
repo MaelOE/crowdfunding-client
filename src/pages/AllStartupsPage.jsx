@@ -61,7 +61,7 @@ function AllStartupsPage() {
               <Link to={`/startups/${startup.id}`}>
                 <div>
                   <img
-                    src={startup.image_url}
+                    src={startup.firstImage}
                     alt={"image of " + startup.name}
                   />
                   <h5>{startup.name}</h5>
