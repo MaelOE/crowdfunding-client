@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const API = import.meta.env.VITE_SERVER_URL;
 
-function EditProjectPage() {
+function EditStartupPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [amountRaised, setAmountRaised] = useState(0);
@@ -46,7 +46,7 @@ function EditProjectPage() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const updatedProject = {
+    const updatedStartup = {
       name,
       description,
       amountRaised,
@@ -57,7 +57,7 @@ function EditProjectPage() {
     try {
       const response = await axios.put(
         `${API}/startups/${startupId}`,
-        updatedProject
+        updatedStartup
       );
       navigate(`/startups/${startupId}`);
     } catch (error) {
@@ -65,7 +65,7 @@ function EditProjectPage() {
     }
   };
 
-  const deleteProject = () => {
+  const deleteStartup = () => {
     axios
       .delete(`${API}/startups/${startupId}`)
       .then(() => {
@@ -77,8 +77,8 @@ function EditProjectPage() {
   };
 
   return (
-    <div className="EditProjectPage mx-auto max-w-5xl px-4 md:px-6 py-8 space-y-6">
-      <h3 className="text-3xl font-bold tracking-tight">Edit the Project</h3>
+    <div className="EditStartupPage mx-auto max-w-5xl px-4 md:px-6 py-8 space-y-6">
+      <h3 className="text-3xl font-bold tracking-tight">Edit the Startup</h3>
 
       <form
         onSubmit={handleFormSubmit}
@@ -155,20 +155,20 @@ function EditProjectPage() {
         <button
           type="submit"
           disabled={isFetching}
-          className="mt-2 inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700 disabled:opacity-60"
+          className="mt-2 inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2 font-semibold text-black hover:bg-indigo-700 disabled:opacity-60"
         >
-          Update Project
+          Update Startup
         </button>
       </form>
 
       <button
-        onClick={deleteProject}
+        onClick={deleteStartup}
         className="inline-flex items-center justify-center rounded-xl border border-rose-300 bg-rose-50 px-4 py-2 font-medium text-rose-700 hover:bg-rose-100"
       >
-        Delete Project
+        Delete Startup
       </button>
     </div>
   );
 }
 
-export default EditProjectPage;
+export default EditStartupPage;
