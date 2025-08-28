@@ -4,10 +4,13 @@ import AllStartupsPage from "./pages/AllStartupsPage";
 import AddStartupPage from "./pages/AddStartupPage";
 import EditProjectPage from "./pages/EditStartupPage";
 import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <NavBar />
+
       <Routes>
         <Route path="/" element={<AllStartupsPage />} />
         <Route path="/startups/:startupId" element={<StartupDetailsPage />} />
