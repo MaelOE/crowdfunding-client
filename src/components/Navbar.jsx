@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
-  // Si tu as une image de logo, remplace null par son chemin:
-  // import logo from "/venture-club-logo.svg";
   const logo = null;
 
   return (

@@ -55,7 +55,7 @@ function EditStartupPage() {
     };
 
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         `${API}/startups/${startupId}`,
         updatedStartup
       );
@@ -162,6 +162,7 @@ function EditStartupPage() {
       </form>
 
       <button
+        type="button"
         onClick={deleteStartup}
         className="inline-flex items-center justify-center rounded-xl border border-rose-300 bg-rose-50 px-4 py-2 font-medium text-rose-700 hover:bg-rose-100"
       >

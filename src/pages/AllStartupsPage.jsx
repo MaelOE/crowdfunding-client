@@ -38,7 +38,7 @@ function AllStartupsPage() {
     <>
       <div>
         <header className="flex flex-col sm:flex-row items-center gap-4 my-4">
-          {/* Bouton rond “+” */}
+          {/* Button “+” */}
           <Link
             to="/startups/add"
             className="shrink-0"
@@ -50,7 +50,7 @@ function AllStartupsPage() {
             </span>
           </Link>
 
-          {/* Barre de recherche */}
+          {/* Search Bar */}
           <input
             type="text"
             placeholder="Search by name, sector or keyword"
@@ -61,6 +61,7 @@ function AllStartupsPage() {
           />
         </header>
 
+        {/* Startup List */}
         <div className="p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredStartups.map((startup) => {
