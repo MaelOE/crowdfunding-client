@@ -13,7 +13,7 @@ export default function CarouselLite({
   // Reset index when images change (prevents out-of-range index)
   useEffect(() => {
     if (index >= len) setIndex(0);
-  }, [len]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [len]);
 
   // Autoplay
   useEffect(() => {
